@@ -1,0 +1,112 @@
+{
+    "order": 0,
+    "template": "log*",
+    "settings": {
+      "index.refresh_interval": "5s"
+    },
+    "mappings": {
+      "logs": {
+        "_source":{"enabled":true},
+        "properties": {
+         "@timestamp" : {
+            "type" : "date",
+            "format" : "dateOptionalTime"
+          },
+          "@version" : {
+            "type" : "string",
+            "index" : "not_analyzed"
+          },
+          "bytes" : {
+            "type" : "integer"
+          },
+          "client" : {
+            "type" : "string"
+          },
+          "clientuser" : {
+            "type" : "string"
+          },
+          "geoip" : {
+            "dynamic" : "true",
+            "properties" : {
+              "location" : {
+                "type" : "geo_point"
+              }
+            }
+          },
+          "haproxy_hour" : {
+            "type" : "string"
+          },
+          "haproxy_milliseconds" : {
+            "type" : "string"
+          },
+          "haproxy_minute" : {
+            "type" : "string"
+          },
+          "haproxy_month" : {
+            "type" : "string"
+          },
+          "haproxy_monthday" : {
+            "type" : "string"
+          },
+          "haproxy_second" : {
+            "type" : "string"
+          },
+          "haproxy_time" : {
+            "type" : "string"
+          },
+          "haproxy_year" : {
+            "type" : "string"
+          },
+          "host" : {
+            "type" : "string"
+          },
+          "http_response_code" : {
+            "type" : "integer"
+          },
+          "httpversion" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "method" : {
+            "type" : "string",
+            "norms" : {
+              "enabled" : false
+            },
+            "fields" : {
+              "raw" : {
+                "type" : "string",
+                "index" : "not_analyzed",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "path" : {
+            "type" : "string"
+          },
+          "request" : {
+            "type" : "string",
+            "norms" : {
+              "enabled" : false
+            },
+            "fields" : {
+              "raw" : {
+                "type" : "string",
+                "index" : "not_analyzed",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "response_time" : {
+            "type" : "integer"
+          },
+          "timestamp" : {
+            "type" : "string"
+          }
+
+        }
+      }
+    }
+}
+
