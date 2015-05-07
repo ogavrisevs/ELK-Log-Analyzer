@@ -24,4 +24,3 @@ logstash:
   volumes:
     - .:/config-dir
   command: logstash --config /config-dir/logstash.conf
-
