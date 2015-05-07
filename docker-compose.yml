@@ -4,7 +4,7 @@ es:
   ports:
     - "9200:9200"
   volumes:
-    - /root/esdata:/usr/share/elasticsearch/data
+    - ./esdata:/usr/share/elasticsearch/data
   working_dir:
     - /root
 
