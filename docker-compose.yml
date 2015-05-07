@@ -1,0 +1,26 @@
+
+es:
+  image: elasticsearch:1.5
+  ports:
+    - "9200:9200"
+  volumes:
+    - ./esdata:/usr/share/elasticsearch/data
+  working_dir:
+    - /root
+
+kibana:
+  image: jimmidyson/kibana4:latest
+  ports:
+    - "5601:5601"
+  links:
+   - es:es
+  environment:
+    ELASTICSEARCH_URL: http://es:9200
+
+logstash:
+  image: logstash
+  links:
+   - es:es
+  volumes:
+    - .:/config-dir
+  command: logstash --config /config-dir/logstash.conf
