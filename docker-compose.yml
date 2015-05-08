@@ -23,4 +23,12 @@ logstash:
    - es:es
   volumes:
     - .:/config-dir
+    - /logs
   command: logstash --config /config-dir/logstash.conf
+
+proxy:
+  build: .
+  ports:
+    - "80:8080"
+  volumes_from:
+    - logstash

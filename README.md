@@ -1,6 +1,6 @@
 Introduction
 -----------------
-This is proof of concept project. It demonstrates ELK stack (ElasticSearch + Logstash + Kibana) usage for analyzing application logs (apache as example ). Stack is deployed on docker containers, `docker-compose` (ex fig) is used to control container work. Data across containers are shared with usage of volumes.
+This is proof of concept project. It demonstrates ELK stack (ElasticSearch + Logstash + Kibana) usage for analyzing application logs (apache as example ). For testing purposes we will spin-up on container apache reverse proxy. Stack is deployed on docker containers, `docker-compose` (ex fig) is used to control container work. Data across containers are shared with usage of volumes.
 
 Versions and dependencies
 -------------------------
@@ -41,6 +41,12 @@ Also if you loaded sample data (see chapter "Load test data" ) you can access da
 
 ```
 http://ip_of_docker_host:5601/#/dashboard/Cust-Dashboard?_g=(time:(from:'2015-03-30',mode:absolute,to:'2015-03-31'))
+```
+
+Visit reverse proxy (on `cnn.com` site) (will generate new log entries and load to es in ~10 sec.):
+
+```
+http://ip_of_docker_host:8080
 ```
 
 You can check es instance state :
@@ -92,8 +98,10 @@ docker ps --all
 docker logs elkloganalyzer_logstash_1
 ```
 
-Load test data
---------------
+##Testing with reverse proxy and loading test data
+
+### Loading Test Data
+
 You can load example data by executing folowing command (inspect precise container name with `docker ps `):
 
 ```
@@ -101,6 +109,9 @@ docker exec -d elkloganalyzer_logstash_1 bash -C '/config-dir/get_sample.sh'
 ```
 
 This command will execute separate process in logstash container and download sample data from AWS s3. In nex 5s logstash should identify appearance of new log files and load them to es.
+
+### Apache reverse proxy
+This solution provides one container with Apache reversed proxy to `cnn.com` site , if you visit this proxy it will generate log entries which will be picked up by logstash and displayed in kibana in about ~5 - 10 sec. For precise url please look for "URL's" paragraphs.
 
 
 Boot2Docker usage on Mac OSX
