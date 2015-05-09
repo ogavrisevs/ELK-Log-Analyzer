@@ -110,6 +110,12 @@ docker exec -d elkloganalyzer_logstash_1 bash -C '/config-dir/get_sample.sh'
 
 This command will execute separate process in logstash container and download sample data from AWS s3. In nex 5s logstash should identify appearance of new log files and load them to es.
 
+Install HQ plugin :
+
+```
+docker exec elkloganalyzer_es1_1 plugin -install royrusso/elasticsearch-HQ
+```
+
 ### Apache reverse proxy
 This solution provides one container with Apache reversed proxy to `cnn.com` site , if you visit this proxy it will generate log entries which will be picked up by logstash and displayed in kibana in about ~5 - 10 sec. For precise url please look for "URL's" paragraphs.
 
