@@ -1,33 +1,37 @@
 
-es:
+es1:
   image: elasticsearch:1.5
   ports:
     - "9200:9200"
-  volumes:
-    - ./esdata:/usr/share/elasticsearch/data
-  working_dir:
-    - /root
+
+es2:
+  image: elasticsearch:1.5
+
+curl:
+  build: ./curl
+  links:
+   - es2:es2
 
 kibana:
   image: jimmidyson/kibana4:latest
   ports:
     - "5601:5601"
   links:
-   - es:es
+   - es1:es1
   environment:
-    ELASTICSEARCH_URL: http://es:9200
+    ELASTICSEARCH_URL: http://es1:9200
 
 logstash:
   image: logstash
   links:
-   - es:es
+   - es1:es1
   volumes:
     - .:/config-dir
     - /logs
   command: logstash --config /config-dir/logstash.conf
 
 proxy:
-  build: .
+  build: ./httpd
   ports:
     - "80:8080"
   volumes_from:
