@@ -1,0 +1,12 @@
+{
+  "config": {
+    "properties": {
+      "buildNum": {
+        "type": "long"
+      },
+      "defaultIndex": {
+        "type": "string"
+      }
+    }
+  }
+}
