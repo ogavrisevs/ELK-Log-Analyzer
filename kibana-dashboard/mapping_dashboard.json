@@ -1,0 +1,28 @@
+{
+  "dashboard": {
+    "properties": {
+      "description": {
+        "type": "string"
+      },
+      "hits": {
+        "type": "integer"
+      },
+      "kibanaSavedObjectMeta": {
+        "properties": {
+          "searchSourceJSON": {
+            "type": "string"
+          }
+        }
+      },
+      "panelsJSON": {
+        "type": "string"
+      },
+      "title": {
+        "type": "string"
+      },
+      "version": {
+        "type": "integer"
+      }
+    }
+  }
+}

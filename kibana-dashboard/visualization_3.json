@@ -1,0 +1,49 @@
+{
+    "title": "Mean response time per minute",
+    "visState": "{
+      \"aggs\": [
+        {
+          \"id\": \"1\",
+          \"params\": {
+            \"field\": \"response_time\"
+          },
+          \"schema\": \"metric\",
+          \"type\": \"avg\"
+        },
+        {
+          \"id\": \"2\",
+          \"params\": {
+            \"extended_bounds\": {},
+            \"field\": \"@timestamp\",
+            \"interval\": \"minute\",
+            \"min_doc_count\": 1
+          },
+          \"schema\": \"segment\",
+          \"type\": \"date_histogram\"
+        }
+      ],
+      \"listeners\": {},
+      \"params\": {
+        \"addLegend\": true,
+        \"addTooltip\": true,
+        \"defaultYExtents\": false,
+        \"mode\": \"stacked\",
+        \"shareYAxis\": true
+      },
+      \"type\": \"histogram\"
+    }",
+    "description": "",
+    "version": 1,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{
+        \"index\": \"logs\",
+        \"query\": {
+          \"query_string\": {
+            \"analyze_wildcard\": true,
+            \"query\": \"*\"
+          }
+        },
+        \"filter\": []
+      }"
+    }
+  }

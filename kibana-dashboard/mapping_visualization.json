@@ -1,0 +1,28 @@
+{
+  "visualization": {
+    "properties": {
+      "description": {
+        "type": "string"
+      },
+      "kibanaSavedObjectMeta": {
+        "properties": {
+          "searchSourceJSON": {
+            "type": "string"
+          }
+        }
+      },
+      "savedSearchId": {
+        "type": "string"
+      },
+      "title": {
+        "type": "string"
+      },
+      "version": {
+        "type": "integer"
+      },
+      "visState": {
+        "type": "string"
+      }
+    }
+  }
+}

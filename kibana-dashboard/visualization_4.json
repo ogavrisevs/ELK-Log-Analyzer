@@ -1,0 +1,49 @@
+{
+    "title": "MBs sent per minute",
+    "visState": "{
+      \"type\": \"histogram\",
+      \"params\": {
+        \"shareYAxis\": true,
+        \"addTooltip\": true,
+        \"addLegend\": true,
+        \"mode\": \"stacked\",
+        \"defaultYExtents\": false
+      },
+      \"aggs\": [
+        {
+          \"id\": \"1\",
+          \"type\": \"sum\",
+          \"schema\": \"metric\",
+          \"params\": {
+            \"field\": \"bytes\"
+          }
+        },
+        {
+          \"id\": \"2\",
+          \"type\": \"date_histogram\",
+          \"schema\": \"segment\",
+          \"params\": {
+            \"field\": \"@timestamp\",
+            \"interval\": \"minute\",
+            \"min_doc_count\": 1,
+            \"extended_bounds\": {}
+          }
+        }
+      ],
+      \"listeners\": {}
+    }",
+    "description": "",
+    "version": 1,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{
+        \"index\": \"logs\",
+        \"query\": {
+          \"query_string\": {
+            \"query\": \"*\",
+            \"analyze_wildcard\": true
+          }
+        },
+        \"filter\": []
+      }"
+    }
+  }
